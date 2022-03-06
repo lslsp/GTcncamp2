@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"log"
 	"net"
 	"net/http"
@@ -21,9 +22,11 @@ func main() {
 
 func index(w http.ResponseWriter, r *http.Request) {
 	// 1.接收客户端request，并将requst中带的header写入reponse header
+	io.WriteString(w, "===================Details of the http request header:============\n")
 	for k, v := range r.Header {
 		for _, vv := range v {
 			w.Header().Set(k, vv)
+			io.WriteString(w, fmt.Sprintf("%s=%s\n", k, v))
 		}
 	}
 
