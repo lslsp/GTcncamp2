@@ -1,13 +1,11 @@
-FROM golang:1.18 AS builder
-ENV GO111MODULE=off \
-	CGO_ENABLED=0 \
-    	GOOS=linux \
-        	GOARCH=amd64
-            WORKDIR /build
-            COPY . .
-RUN go build -o httpserver .
+FROM golang:1.18 AS build
+ENV GO111MODULE=off CGO_ENABLED=0 GOOS=linux GOARCH=amd64
+COPY . /go/src/httpserver
+WORKDIR /go/src/httpserver
+
+RUN go build -o /bin/httpserver
 
 FROM scratch
-COPY --from=builder /build/httpserver /
-EXPOSE 8080
-ENTRYPOINT ["/httpserver"]
+COPY --from=build /bin/httpserver /bin/httpserver
+EXPOSE 80
+ENTRYPOINT ["bin/httpserver"]
