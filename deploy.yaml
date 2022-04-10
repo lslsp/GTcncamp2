@@ -62,8 +62,6 @@ spec:
             terminationMessagePath: /dev/termination-log
             terminationMessagePolicy: File
         dnsPolicy: ClusterFirst
-        imagePullSecrets:
-          - name: cloudnative
         restartPolicy: Always
         schedulerName: default-scheduler
         securityContext: {}
