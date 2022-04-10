@@ -5,7 +5,7 @@ WORKDIR /go/src/httpserver
 
 RUN go build -o /bin/httpserver
 
-FROM scratch
+FROM alpine
 COPY --from=build /bin/httpserver /bin/httpserver
 EXPOSE 80
 ENTRYPOINT ["bin/httpserver"]
