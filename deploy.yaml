@@ -18,14 +18,13 @@ spec:
       type: RollingUpdate
     template: 
       metadata: 
-        app: httpserver
-        labels: ~
+        creationTimestamp: null
+        labels:
+          app: httpserver
       spec: 
         containers: 
-          - 
-            env: 
-              - 
-                name: httpport
+          - env: 
+              - name: httpport
                 valueFrom: 
                   configMapKeyRef: 
                     key: httpport
