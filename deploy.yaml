@@ -1,39 +1,40 @@
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  labels:
+metadata: 
+  labels: 
     app: httpserver
   name: httpserver
-spec:
-  progressDeadlineSeconds: 600  
-  replicas: 2  
-  revisionHistoryLimit: 10  
-  selector:  
+spec: 
+  progressDeadlineSeconds: 600
+  replicas: 2
+  revisionHistoryLimit: 10
+  selector: 
     matchLabels: 
       app: httpserver
-    strategy:  
-      rollingUpdate:  
-        maxSurge: 25%      
+    strategy: 
+      rollingUpdate: 
+        maxSurge: 25%
         maxUnavailable: 25%
       type: RollingUpdate
-    template:
-      metadata:
-        creationTimestamp: null
-          labels:
-            app: httpserver
-      spec:
-        containers:
-          - env:
-              - name: httpport
-                  valueFrom:
-                  configMapKeyRef:
-                  key: httpport
-                  name: lslspenv
-            image: lslsp2/httpserver:1.1
+    template: 
+      metadata: 
+        app: httpserver
+        labels: ~
+      spec: 
+        containers: 
+          - 
+            env: 
+              - 
+                name: httpport
+                valueFrom: 
+                  configMapKeyRef: 
+                    key: httpport
+                    name: lslspenv
+            image: "lslsp2/httpserver:1.1"
             imagePullPolicy: IfNotPresent
             livenessProbe: 
               failureThreshold: 3
-              httpGet:
+              httpGet: 
                 path: /healthz
                 port: 80
                 scheme: HTTP
@@ -56,7 +57,7 @@ spec:
               limits: 
                 cpu: 200m
                 memory: 100Mi
-              requests:
+              requests: 
                 cpu: 20m
                 memory: 20Mi
             terminationMessagePath: /dev/termination-log
