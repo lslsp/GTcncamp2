@@ -1,6 +1,4 @@
 apiVersion: v1
+data:
+  httpport: "80"
 kind: ConfigMap
-metadata:  
-  name: lslspenv
-  data:
-    httpport: "80"

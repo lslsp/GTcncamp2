@@ -19,13 +19,11 @@ spec:
     template: 
       metadata: 
         app: httpserver
-        labels: ~
+        labels: 
       spec: 
         containers: 
-          - 
-            env: 
-              - 
-                name: httpport
+          - env: 
+              - name: httpport
                 valueFrom: 
                   configMapKeyRef: 
                     key: httpport
