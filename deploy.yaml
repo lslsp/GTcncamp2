@@ -1,3 +1,14 @@
+#configmap
+
+apiVersion: v1
+data:
+  httpport: "80"
+kind: ConfigMap
+metadata:
+  name: lslspconfigmap
+
+#deployment
+
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
@@ -5,8 +16,8 @@ metadata:
     app: httpserver
   name: httpserver
 spec: 
-  progressDeadlineSeconds: 600
-  replicas: 2
+  progressDeadlineSeconds: 60
+  replicas: 5
   revisionHistoryLimit: 10
   selector: 
     matchLabels: 
@@ -18,7 +29,6 @@ spec:
     type: RollingUpdate
   template: 
     metadata: 
-      creationTimestamp: null
       labels:
         app: httpserver
     spec: 
@@ -28,7 +38,7 @@ spec:
               valueFrom: 
                 configMapKeyRef: 
                   key: httpport
-                  name: configmap
+                  name: lslspconfigmap
           image: "lslsp2/httpserver:0.8"
           imagePullPolicy: IfNotPresent
           livenessProbe: 
@@ -66,4 +76,3 @@ spec:
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
-
