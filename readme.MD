@@ -1,7 +1,9 @@
 ## 1.Create configmap
 
 ```shell
-$ kubectl create -f lslsp-config.yaml
+$ kubectl create configmap lslsp-config --from-env-file=lslsp-config.env
+###or use 
+### $ kubectl create -f lslsp-cofig.yaml
 ```
 ## 2.Create httpserver deployment
 
