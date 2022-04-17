@@ -1,6 +1,6 @@
 ### module02 homework
 
-## 1 httpserver golang source code
+## 1 Go & Git
 
 ```shell
 go build 1-main.go
@@ -12,7 +12,7 @@ git push
 
 ### module03 homework
 
-## 2 docker build and push to dockerhub
+## 2 docker build & push
 ```shell
 docker build -f Dockerfile
 docker run
