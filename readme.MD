@@ -1,4 +1,4 @@
-## 1.Create httpport configmap
+## 1.Create configmap
 
 ```shell
 $ kubectl create -f lslsp-config.yaml
