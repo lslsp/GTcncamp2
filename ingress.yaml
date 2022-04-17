@@ -10,7 +10,7 @@ spec:
         - lslsp.com
       secretName: lslsp-tls
   rules:
-    - host: httpserver.lslsp.com
+    - host: lslsp.com
       http:
         paths:
           - path: "/"
