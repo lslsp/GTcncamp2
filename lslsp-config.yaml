@@ -3,4 +3,4 @@ data:
   httpport: "80"
 kind: ConfigMap
 metadata:
-  name: configmap
+  name: lslsp-config

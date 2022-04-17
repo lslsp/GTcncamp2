@@ -1,7 +1,7 @@
-## 1.Create httpport configmap
+## 1.Create configmap
 
 ```shell
-$ kubectl create -f configmap.yaml
+$ kubectl create -f lslsp-config.yaml
 ```
 ## 2.Create httpserver deployment
 
