@@ -3,9 +3,10 @@ kind: Service
 metadata:
   name: lslsp-httpserver
 spec:
-  type: NodePort
+  type: NodePort 
   ports:
     - port: 80
+      nodePort: 30000
       protocol: TCP
       name: http
   selector:
