@@ -27,7 +27,7 @@ spec:
               valueFrom: 
                 configMapKeyRef: 
                   key: httpport
-                  name: lslspconfigmap
+                  name: lslsp-config
           image: "lslsp2/httpserver:0.8"
           imagePullPolicy: IfNotPresent
           livenessProbe: 
