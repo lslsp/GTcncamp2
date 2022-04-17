@@ -1,4 +1,4 @@
-### _module02 homework_
+### _module02_
 
 ## 1 Go & Git
 
@@ -10,7 +10,7 @@ git commit -m "xxx"
 git push
 ```
 
-### _module03 homework_
+### _module03_
 
 ## 2 docker build & push
 ```shell
@@ -19,7 +19,7 @@ docker run
 docker push
 ```
 
-### _module 08 part one_
+### _module 08 (1/2)_
 
 ## 3.Create configmap
 
@@ -35,7 +35,7 @@ kubectl create -f 3-lslsp-cofig.yaml
 kubectl create -f 4-deploy.yaml
 ```
 
-### _module 08 part two_
+### _module 08 (2/2)_
 
 ## 5.Create lslsp-httpserver service
 
