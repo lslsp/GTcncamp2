@@ -1,4 +1,4 @@
-### _module02_
+### _module 02_
 
 ## 1 Go & Git
 
@@ -10,13 +10,14 @@ git commit -m "xxx"
 git push
 ```
 
-### _module03_
+### _module 03_
 
-## 2 docker build & push
+## 2 Docker Build & Push
 ```shell
-docker build -f Dockerfile
-docker run
-docker push
+docker build . -t lslsp2/httpserver:0.8 -f Dockerfile
+docker login
+docker push lslsp2/httpserver:0.8
+docker run -p 8080:80 lslsp2/httpserver:0.8
 ```
 
 ### _module 08 (1/2)_
