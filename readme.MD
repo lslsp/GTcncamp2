@@ -59,5 +59,5 @@ kubectl create -f 7-ng-ingress-deploy-cp-from-cncamp.yaml
 ```shell
 kubectl create -f 8-ingress.yaml
 kubectl get svc -n ingress-nginx
-curl -H "Host: lslsp.com" http://<ingress-nginx-controller CLUSTER-IP> -v -k
+curl -H "Host: lslsp.com" https://<ingress-nginx-controller CLUSTER-IP> -v -k
 ```
