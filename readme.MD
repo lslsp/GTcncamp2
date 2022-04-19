@@ -46,12 +46,12 @@ kubectl create -f 5-service.yaml
 ## 6.Create lslsp-tls secret
 
 ```shell
-kubectl create -f 6.secret.yaml
+kubectl create -f 6-secret.yaml
 ```
 
 ## 7.install nginx-ingress (with jessie_meng's yaml :-> )
 ```shell
-kubectl create -f 7.ng-ingress-deploy-cp-from-cncamp.yaml
+kubectl create -f 7-ng-ingress-deploy-cp-from-cncamp.yaml
 ```
 
 ## 8.Create lslsp-httpserver-ingress ingress
