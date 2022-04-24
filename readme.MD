@@ -126,8 +126,8 @@ kubectl edit svc loki-prometheus-server
 # type: NodePort
 kubectl edit svc loki-grafana
 # type: NodePort
-# ( screenshot/httpserver.png )
 ```
+![image](screenshot/httpserver.png)
 
 ## 13. Query Metrics in Prometheus
 
