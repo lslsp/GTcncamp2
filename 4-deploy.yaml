@@ -18,6 +18,9 @@ spec:
     type: RollingUpdate
   template: 
     metadata: 
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "80"
       labels:
         app: httpserver
     spec: 
@@ -28,7 +31,7 @@ spec:
                 configMapKeyRef: 
                   key: httpport
                   name: lslsp-config
-          image: "lslsp2/httpserver:0.8"
+          image: "lslsp2/httpserver:0.10"
           imagePullPolicy: IfNotPresent
           livenessProbe: 
             failureThreshold: 3
