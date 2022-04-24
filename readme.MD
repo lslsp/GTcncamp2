@@ -4,7 +4,8 @@
 
 ```shell
 go build 1-main.go
-./1-main
+sudo ./1-main
+
 git add 1-main.go
 git commit -m "xxx"
 git push
@@ -14,10 +15,10 @@ git push
 
 ## 2 Docker Build & Push
 ```shell
-docker build . -t lslsp2/httpserver:0.8 -f Dockerfile
+docker build . -t lslsp2/httpserver:0.8 -f 2-Dockerfile
 docker login
 docker push lslsp2/httpserver:0.8
-docker run -p 8080:80 lslsp2/httpserver:0.8
+docker run -p 80:80 lslsp2/httpserver:0.8
 ```
 
 ### _module 08 (1/2)_
@@ -62,3 +63,28 @@ kubectl create -f 8-ingress.yaml
 kubectl get svc -n ingress-nginx
 curl -H "Host: lslsp.com" https://<ingress-nginx-controller CLUSTER-IP> -v -k
 ```
+
+### _module 10_
+
+## 9. re-Go & Git with Metrics.go
+
+```shell
+go mod init
+go mod tidy
+go build 1-main.go
+sudo ./1-main
+
+git add 1-main.go
+git add metrics/metrics.go
+git commit -m "xxx"
+git push
+```
+## 10. Docker Build & Push v0.10
+```shell
+docker build . -t lslsp2/httpserver:0.10 -f 2-Dockerfile
+docker login
+docker push lslsp2/httpserver:0.10
+docker run -p 80:80 lslsp2/httpserver:0.10
+```
+
+
