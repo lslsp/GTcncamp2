@@ -1,8 +1,9 @@
 FROM golang:1.18 AS build
-ENV GO111MODULE=off CGO_ENABLED=0 GOOS=linux GOARCH=amd64
-COPY . /go/src/httpserver
-WORKDIR /go/src/httpserver
-
+ENV GO111MODULE=on CGO_ENABLED=0 GOOS=linux GOARCH=amd64
+COPY . /go/src/github.com/lslsp/GTcncamp2
+COPY metrics/. /go/src/github.com/lslsp/GTcncamp2/metrics
+WORKDIR /go/src/github.com/lslsp/GTcncamp2
+RUN go mod download
 RUN go build -o /bin/httpserver
 
 FROM alpine
