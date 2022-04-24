@@ -79,6 +79,7 @@ git add metrics/metrics.go
 git commit -m "xxx"
 git push
 ```
+
 ## 10. Docker Build & Push v0.10
 ```shell
 docker build . -t lslsp2/httpserver:0.10 -f 2-Dockerfile
@@ -87,4 +88,9 @@ docker push lslsp2/httpserver:0.10
 docker run -p 80:80 lslsp2/httpserver:0.10
 ```
 
+## 11.Apply httpserver deployment (with 5 pods)
+
+```shell
+kubectl apply -f 4-deploy.yaml
+```
 
