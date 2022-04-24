@@ -32,6 +32,8 @@ spec:
                   key: httpport
                   name: lslsp-config
           image: "lslsp2/httpserver:0.10"
+          ports:
+            - containerPort: 80
           imagePullPolicy: IfNotPresent
           livenessProbe: 
             failureThreshold: 3
