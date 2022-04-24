@@ -126,7 +126,7 @@ kubectl edit svc loki-prometheus-server
 # type: NodePort
 kubectl edit svc loki-grafana
 # type: NodePort
-# ( screenshot-httpserver.png )
+# ( screenshot/httpserver.png )
 ```
 
 ## 13. Query Metrics in Prometheus
@@ -135,7 +135,7 @@ kubectl edit svc loki-grafana
 #(4/5)
 histogram_quantile(0.55, sum by(le) (rate(httpserver_execution_latency_seconds_bucket[5m])))
 -> Execute
-# ( screenshot-Prometheus.png )
+# ( screenshot/Prometheus.png )
 ```
 
 ## 14. Inport dashboard in Grafana
@@ -144,7 +144,7 @@ histogram_quantile(0.55, sum by(le) (rate(httpserver_execution_latency_seconds_b
 #(5/5)
 Create -> Import -> Upload JSON file -> 14-httpserver-latency.json -> open
 -> Import
-# ( screenshot-Grafana.png )
+# ( screenshot/Grafana.png )
 ```
 
 
