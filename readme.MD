@@ -51,7 +51,7 @@ kubectl create -f 5-service.yaml
 kubectl create -f 6-secret.yaml
 ```
 
-## 7.install nginx-ingress (with jessie_meng's yaml :-> )
+## 7.install nginx-ingress ( with jessie_meng's yaml :-> )
 ```shell
 kubectl create -f 7-ng-ingress-deploy-cp-from-cncamp.yaml
 ```
@@ -66,7 +66,7 @@ curl -H "Host: lslsp.com" https://<ingress-nginx-controller CLUSTER-IP> -v -k
 
 ### _module 10_
 
-## 9. re-Go & Git with Metrics.go
+## 9. Go & Git ( override step 1 with Metrics.go )
 
 ```shell
 go mod init
@@ -80,7 +80,7 @@ git commit -m "xxx"
 git push
 ```
 
-## 10. Docker Build & Push v0.10
+## 10. Docker build with go.mod & Push ( override step 2 )
 ```shell
 docker build . -t lslsp2/httpserver:0.10 -f 2-Dockerfile
 docker login
@@ -88,7 +88,7 @@ docker push lslsp2/httpserver:0.10
 docker run -p 80:80 lslsp2/httpserver:0.10
 ```
 
-## 11.Apply httpserver deployment (with 5 pods)
+## 11.Update httpserver deployment ( override step 4 )
 
 ```shell
 kubectl apply -f 4-deploy.yaml
