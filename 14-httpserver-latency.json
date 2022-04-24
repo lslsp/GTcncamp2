@@ -111,7 +111,7 @@
         },
         {
           "exemplar": true,
-          "expr"htt: "histogram_quantile(0.50, sum(rate(httpserver_execution_latency_seconds_bucket[5m])) by (le))",
+          "expr": "histogram_quantile(0.50, sum(rate(httpserver_execution_latency_seconds_bucket[5m])) by (le))",
           "hide": false,
           "interval": "",
           "legendFormat": "",

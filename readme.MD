@@ -141,6 +141,8 @@ histogram_quantile(0.55, sum by(le) (rate(httpserver_execution_latency_seconds_b
 ```sh
 #(5/5)
 Create -> Import -> Upload JSON file -> 14-httpserver-latency.json -> open
+-> Import
+```
 
 
 
