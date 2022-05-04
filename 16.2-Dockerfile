@@ -1,0 +1,13 @@
+FROM golang:1.18 AS build
+ENV GO111MODULE=on CGO_ENABLED=0 GOOS=linux GOARCH=amd64
+COPY . /go/src/github.com/lslsp/GTcncamp2/service1
+COPY metrics/. /go/src/github.com/lslsp/GTcncamp2/service1/metrics
+WORKDIR /go/src/github.com/lslsp/GTcncamp2/service1
+RUN go mod download
+RUN go build -o /bin/service1
+
+FROM alpine
+COPY --from=build /bin/service1 /bin/service1
+EXPOSE 80
+ENTRYPOINT ["bin/service1"]
+

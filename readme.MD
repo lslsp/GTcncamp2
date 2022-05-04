@@ -170,7 +170,7 @@ git push
 ```shell
 cd service0
 docker build . -t lslsp2/service0:0.12 -f ../16.1-Dockerfile
-cd servcie1
+cd service1
 docker build . -t lslsp2/service1:0.12 -f ../16.2-Dockerfile
 cd service2
 docker build . -t lslsp2/service2:0.12 -f ../16.3-Dockerfile
