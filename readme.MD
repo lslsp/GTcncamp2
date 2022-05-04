@@ -149,7 +149,9 @@ Create -> Import -> Upload JSON file -> 14-httpserver-latency.json -> open
 ```
 ![image](screenshot/Grafana.png)
 
+
 ### _module 12_
+
 ## 15. Go & Git ( Rewirte Httpserver with Service 0,1,2 )
 
 ```shell
@@ -166,7 +168,7 @@ git commit -m "xxx"
 git push
 ```
 
-## 16. Docker build
+## 16. Docker Build & Push
 ```shell
 cd service0
 docker build . -t lslsp2/service0:0.12 -f ../16.1-Dockerfile
@@ -180,7 +182,7 @@ docker push lslsp2/service0:0.12
 docker push lslsp2/service1:0.12
 docker push lslsp2/service2:0.12
 
-docker run -p 80:80 lslsp2/service0:0.12
-docker run -p 80:80 lslsp2/service1:0.12
-docker run -p 80:80 lslsp2/service2:0.12
+docker run -p 8080:80 lslsp2/service0:0.12
+docker run -p 8081:80 lslsp2/service1:0.12
+docker run -p 8082:80 lslsp2/service2:0.12
 ```
