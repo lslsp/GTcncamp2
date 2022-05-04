@@ -152,7 +152,7 @@ Create -> Import -> Upload JSON file -> 14-httpserver-latency.json -> open
 
 ### _module 12_
 
-## 15. Go & Git ( Rewirte Httpserver with Service 0,1,2 )
+## 15. Go & Git (call: service0 -> service1 -> service2 )
 
 ```shell
 cd service0 (or service1,service2)
