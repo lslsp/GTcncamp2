@@ -205,6 +205,8 @@ istioctl install --set profile=demo -y
 ```
 
 ## 18. Deploy Istio Ingress Gateway (with sidecar)
+```shell
 kubectl create ns istio-httpserver
 kubectl label ns istio-httpserver istio-injection=enabled
 kubectl apply -f 18-deployment.yaml -n istio-httpserver
+```
