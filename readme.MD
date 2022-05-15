@@ -196,7 +196,7 @@ service0 log print error:
 docker rm -f <container-id>
 ```
 
-## 17. Install Istio
+## 17. Install Istio & Jaeger
 ```shell
 curl -L https://istio.io/downloadIstio | sh -
 cd istio-1.13.3
@@ -204,7 +204,7 @@ export PATH=$PWD/bin:$PATH
 istioctl install --set profile=demo -y
 ```
 
-## 18. Deploy Secure Istio Ingress Gateway (homework 1/3)
+## 18. Deploy Secure Istio Ingress Gateway (1/3)
 ```shell
 //secret
 openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -subj '/O=lslsp Inc./CN=*.lslsp.io' -keyout lslsp.io.key -out lslsp.io.crt
@@ -218,8 +218,17 @@ kubectl apply -f 18-deployment.yaml -n istio-httpserver
 ![image](screenshot/istio-https.png)
 
 
-## 19. L7 Routing (Homework 2/3)
+## 19. L7 Routing (2/3)
 ```shell
 kubectl apply -f 19-l7route.yaml -n istio-httpserver
 ```
 ![image](screenshot/l7route.png)
+
+## 20. Jaeger Tracing (3/3)
+```shell
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.13/samples/addons/jaeger.yaml
+
+//because ubuntu server has no GUI ,"http://localhost:16686" cann't be explored,so edit tracing svc into "NodePort" mode.
+```
+![image](screenshot/jaeger-trace.png)
+
