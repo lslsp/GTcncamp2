@@ -152,14 +152,14 @@ Create -> Import -> Upload JSON file -> 14-httpserver-latency.json -> open
 
 ### _module 12_
 
-## 15. Go & Git (call: service0 -> service1 -> service2 )
+## 15. Go & Git (Transform httpserver into 3 microservices: service0 -> service1 -> service2 )
 
 ```shell
-cd service0 (or service1,service2)
+cd service0 (or service1, service2)
 go mod init
 go mod tidy
 go build
-sudo ./service0 (or service1,service2)
+sudo ./service0 (or service1, service2)
 
 git add service0
 git add service1
@@ -170,6 +170,7 @@ git push
 
 ## 16. Docker Build & Push
 ```shell
+//build
 cd service0
 docker build . -t lslsp2/service0:0.12 -f ../16.1-Dockerfile
 cd service1
@@ -177,12 +178,33 @@ docker build . -t lslsp2/service1:0.12 -f ../16.2-Dockerfile
 cd service2
 docker build . -t lslsp2/service2:0.12 -f ../16.3-Dockerfile
 
+//push
 docker login
 docker push lslsp2/service0:0.12
 docker push lslsp2/service1:0.12
 docker push lslsp2/service2:0.12
 
+//unit test
 docker run -p 8080:80 lslsp2/service0:0.12
 docker run -p 8081:80 lslsp2/service1:0.12
 docker run -p 8082:80 lslsp2/service2:0.12
+
+service0 log print error:
+2022/05/15 12:22:07 HTTP get failed with error: %!(EXTRA string=error, *url.Error=Get "http://service1": dial tcp: lookup service1 on 8.8.8.8:53: no such host
+
+//remove
+docker rm -f <container-id>
 ```
+
+## 17. Install Istio
+```shell
+curl -L https://istio.io/downloadIstio | sh -
+cd istio-1.13.3
+export PATH=$PWD/bin:$PATH
+istioctl install --set profile=demo -y
+```
+
+## 18. Deploy Istio Ingress Gateway (with sidecar)
+kubectl create ns istio-httpserver
+kubectl label ns istio-httpserver istio-injection=enabled
+kubectl apply -f 18-deployment.yaml -n istio-httpserver
