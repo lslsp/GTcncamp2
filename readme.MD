@@ -216,3 +216,10 @@ kubectl label ns istio-httpserver istio-injection=enabled
 kubectl apply -f 18-deployment.yaml -n istio-httpserver
 ```
 ![image](screenshot/istio-https.png)
+
+
+## 19. L7 Routing (Homework 2/3)
+```shell
+kubectl apply -f 19-l7route.yaml -n istio-httpserver
+```
+![image](screenshot/l7route.png)

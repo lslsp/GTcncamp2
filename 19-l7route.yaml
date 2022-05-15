@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oldhttpserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oldhttpserver
+  template:
+    metadata:
+      labels:
+        app: oldhttpserver
+    spec:
+      containers:
+        - name: oldhttpserver
+          image: lslsp2/httpserver:0.10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: oldhttpserver
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: oldhttpserver
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: httpsserver
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - hosts:
+        - httpserver.lslsp.io
+      port:
+        name: https
+        number: 443
+        protocol: HTTPS
+      tls:
+        mode: SIMPLE
+        credentialName: lslsp-credential
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: httpsserver
+spec:
+  gateways:
+    - httpsserver
+  hosts:
+    - httpserver.lslsp.io
+  http:
+  - match:
+    - uri:
+        exact: "/old"
+    rewrite:
+      uri: "/"
+    route:
+      - destination:
+          host: oldhttpserver.istio-httpserver.svc.cluster.local
+          port:
+            number: 80
+  - match:
+    - uri:
+        prefix: "/"
+    rewrite:
+      uri: "/"
+    route:
+      - destination:
+          host: service0.istio-httpserver.svc.cluster.local
+          port:
+            number: 80
