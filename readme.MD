@@ -204,9 +204,15 @@ export PATH=$PWD/bin:$PATH
 istioctl install --set profile=demo -y
 ```
 
-## 18. Deploy Istio Ingress Gateway (with sidecar)
+## 18. Deploy Secure Istio Ingress Gateway (homework 1/3)
 ```shell
+//secret
+openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -subj '/O=lslsp Inc./CN=*.lslsp.io' -keyout lslsp.io.key -out lslsp.io.crt
+kubectl create -n istio-system secret tls lslsp-credential --key=lslsp.io.key --cert=lslsp.io.crt
+
+//deploy with sidecar
 kubectl create ns istio-httpserver
 kubectl label ns istio-httpserver istio-injection=enabled
 kubectl apply -f 18-deployment.yaml -n istio-httpserver
 ```
+![image](screenshot/istio-https.png)

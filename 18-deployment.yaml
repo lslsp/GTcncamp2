@@ -104,31 +104,38 @@ spec:
     app: service2
 ---
 apiVersion: networking.istio.io/v1beta1
-kind: VirtualService
-metadata:
-  name: service0
-spec:
-  gateways:
-    - service0
-  hosts:
-    - '*'
-  http:
-  - route:
-      - destination:
-          port:
-            number: 80
----
-apiVersion: networking.istio.io/v1beta1
 kind: Gateway
 metadata:
-  name: service0
+  name: httpsserver
 spec:
   selector:
     istio: ingressgateway
   servers:
-    - port:
-        number: 80
-        name: http-service0
-        protocol: HTTP
-      hosts:
-        - '*'
+    - hosts:
+        - httpserver.lslsp.io
+      port:
+        name: https
+        number: 443
+        protocol: HTTPS
+      tls:
+        mode: SIMPLE
+        credentialName: lslsp-credential
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: httpsserver
+spec:
+  gateways:
+    - httpsserver
+  hosts:
+    - httpserver.lslsp.io
+  http:
+    - match:
+        - port: 443
+      route:
+        - destination:
+            host: service0.istio-httpserver.svc.cluster.local
+            port:
+              number: 80
+              
