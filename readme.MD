@@ -172,11 +172,11 @@ git push
 ```shell
 //build
 cd service0
-docker build . -t lslsp2/service0:0.12 -f ../16.1-Dockerfile
+docker build . -t lslsp2/service0:0.12 -f ../dockerfile/16.1-Dockerfile
 cd service1
-docker build . -t lslsp2/service1:0.12 -f ../16.2-Dockerfile
+docker build . -t lslsp2/service1:0.12 -f ../dockerfile/16.2-Dockerfile
 cd service2
-docker build . -t lslsp2/service2:0.12 -f ../16.3-Dockerfile
+docker build . -t lslsp2/service2:0.12 -f ../dockerfile/16.3-Dockerfile
 
 //push
 docker login
@@ -189,7 +189,7 @@ docker run -p 8080:80 lslsp2/service0:0.12
 docker run -p 8081:80 lslsp2/service1:0.12
 docker run -p 8082:80 lslsp2/service2:0.12
 
-service0 log print error:
+//service0's log:
 2022/05/15 12:22:07 HTTP get failed with error: %!(EXTRA string=error, *url.Error=Get "http://service1": dial tcp: lookup service1 on 8.8.8.8:53: no such host
 
 //remove
@@ -228,7 +228,7 @@ kubectl apply -f 19-l7route.yaml -n istio-httpserver
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.13/samples/addons/jaeger.yaml
 
-//because ubuntu server has no GUI ,"http://localhost:16686" cann't be explored,so edit tracing svc into "NodePort" mode.
+//istioctl dashboard jaeger -> ubuntu server has no GUI -> "http://localhost:16686" doesn't work ->  edit tracing svc mode : "NodePort".
 ```
 ![image](screenshot/jaeger-trace.png)
 
