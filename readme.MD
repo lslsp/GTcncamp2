@@ -196,7 +196,7 @@ docker run -p 8082:80 lslsp2/service2:0.12
 docker rm -f <container-id>
 ```
 
-## 17. Install Istio & Jaeger
+## 17. Install Istio
 ```shell
 curl -L https://istio.io/downloadIstio | sh -
 cd istio-1.13.3
@@ -218,7 +218,7 @@ kubectl apply -f 18-deployment.yaml -n istio-httpserver
 ![image](screenshot/istio-https.png)
 
 
-## 19. L7 Routing (2/3)
+## 19. Istio L7 Routing (2/3)
 ```shell
 kubectl apply -f 19-l7route.yaml -n istio-httpserver
 ```
