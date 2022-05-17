@@ -26,15 +26,15 @@ docker run -p 80:80 lslsp2/httpserver:0.8
 ## 3.Create configmap
 
 ```shell
-kubectl create configmap lslsp-config --from-env-file=lslsp-config.env
+kubectl apply configmap lslsp-config --from-env-file=lslsp-config.env
 ```or
-kubectl create -f 3-lslsp-cofig.yaml
+kubectl apply -f 3-lslsp-cofig.yaml
 ```
 
 ## 4.Create httpserver deployment (with 5 pods)
 
 ```shell
-kubectl create -f 4-deploy.yaml
+kubectl apply -f 4-deploy.yaml
 ```
 
 ### _module 08 (2/2)_
@@ -42,24 +42,24 @@ kubectl create -f 4-deploy.yaml
 ## 5.Create lslsp-httpserver service
 
 ```shell
-kubectl create -f 5-service.yaml
+kubectl apply -f 5-service.yaml
 ```
 
 ## 6.Create lslsp-tls secret
 
 ```shell
-kubectl create -f 6-secret.yaml
+kubectl apply -f 6-secret.yaml
 ```
 
 ## 7.install nginx-ingress ( with jessie_meng's yaml :-> )
 ```shell
-kubectl create -f 7-ng-ingress-deploy-cp-from-cncamp.yaml
+kubectl apply -f 7-ng-ingress-deploy-cp-from-cncamp.yaml
 ```
 
 ## 8.Create lslsp-httpserver-ingress ingress
 
 ```shell
-kubectl create -f 8-ingress.yaml
+kubectl apply -f 8-ingress.yaml
 kubectl get svc -n ingress-nginx
 curl -H "Host: lslsp.com" https://<ingress-nginx-controller CLUSTER-IP> -v -k
 ```
@@ -208,7 +208,6 @@ istioctl install --set profile=demo -y
 ```shell
 //secret
 openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -subj '/O=lslsp Inc./CN=*.lslsp.io' -keyout lslsp.io.key -out lslsp.io.crt
-kubectl create -n istio-system secret tls lslsp-credential --key=lslsp.io.key --cert=lslsp.io.crt
 
 //deploy with sidecar
 kubectl create ns istio-httpserver
@@ -228,7 +227,9 @@ kubectl apply -f 19-l7route.yaml -n istio-httpserver
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.13/samples/addons/jaeger.yaml
 
-//istioctl dashboard jaeger -> ubuntu server has no GUI -> "http://localhost:16686" doesn't work ->  edit tracing svc mode : "NodePort".
+//istioctl dashboard jaeger -> ubuntu server has no GUI -> "http://localhost:16686" doesn't work ->  edit tracing svc mode : "NodePort".  or
+
+istioctl dashboard --address=0.0.0.0 jaeger
 ```
 ![image](screenshot/jaeger-trace.png)
 
